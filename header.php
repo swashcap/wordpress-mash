@@ -2,38 +2,38 @@
 /**
  * The Header for our theme.
  *
- * Displays all of the <head> section and everything up till <div id="content">
+ * Displays all of the <head> section and everything up till the
+ * `div.site-content`.
  *
  * @package WordPress Mash
  * @since WordPress Mash 1.0.0
  */
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<html <?php language_attributes(); ?> class="no-js">
+	<head>
+		<meta charset="<?php bloginfo( 'charset' ); ?>">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title><?php wp_title( '|', true, 'right' ); ?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<?php wp_head(); ?>
-</head>
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-<body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
-	<?php do_action( 'before' ); ?>
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div>
+		<?php wp_head(); ?>
+	</head>
+	<body <?php body_class(); ?>>
+		<div class="hfeed site">
+			<header class="site-header" role="banner">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+					<?php if (get_bloginfo( 'description' )) : ?>
+						<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+					<?php endif; ?>
+				</a>
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<h1 class="menu-toggle"><?php _e( 'Menu', 'mash' ); ?></h1>
-			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'mash' ); ?></a>
+				<nav class="main-navigation" role="navigation">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+				</nav><!-- .main-navigation -->
+			</header><!-- .site-header -->
 
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
+			<div class="site-content">
